@@ -20,12 +20,17 @@ function App() {
     });
   }
 
+  const inputIsVaild = userInput.duration >= 1;
+
   return (
     // React 컴포넌트는 return에서 JSX를 하나만 반환해야 한다
     <>
     <Header />
     <UserInput userInput={userInput} onChange={handleChange} />
-    <Results input={userInput} />
+    {!inputIsVaild && (
+      <p className="center">0보다 큰 기간을 입력해 주세요.</p>
+    )}
+    {inputIsVaild && <Results input={userInput} />}
     </>
   )
 }
