@@ -1,21 +1,4 @@
-import { useState } from 'react';
-
-export default function UserInput() {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000, // 초기 투자금
-    annualInvestment: 1200, // 추가 투자금
-    expectedReturn: 6, // 기대 수익률
-    duration: 10 // 투자 기간
-  });
-
-  function handleChange(inputIdentifier, newValue) {
-    setUserInput(prevUserInput => {
-      return {
-        ...prevUserInput, // 새로운 객체에 모든 예전 값들을 복사
-        [inputIdentifier]: newValue // 새로운 값 할당
-      }
-    });
-  }
+export default function UserInput({ onChange, userInput }) { // 구조 분해 할당 : 객체나 배열에서 “필요한 값만 골라서 변수로 만드는 방법"
 
   return <section id="user-input">
     <div className="input-group">
@@ -26,7 +9,7 @@ export default function UserInput() {
           required 
           value={userInput.initialInvestment}
           onChange={(event) => 
-            handleChange('initialInvestment', event.target.value)} 
+            onChange('initialInvestment', event.target.value)} 
         />
       </p>
       <p>
@@ -36,7 +19,7 @@ export default function UserInput() {
           required 
           value={userInput.annualInvestment}
           onChange={(event) => 
-            handleChange('annualInvestment', event.target.value)} 
+            onChange('annualInvestment', event.target.value)} 
         />
       </p>
     </div>
@@ -48,7 +31,7 @@ export default function UserInput() {
           required 
           value={userInput.expectedReturn}
           onChange={(event) => 
-            handleChange('expectedReturn', event.target.value)} 
+            onChange('expectedReturn', event.target.value)} 
         />
       </p>
       <p>
@@ -58,7 +41,7 @@ export default function UserInput() {
           required 
           value={userInput.duration}
           onChange={(event) => 
-            handleChange('duration', event.target.value)} 
+            onChange('duration', event.target.value)} 
         />
       </p>
     </div>

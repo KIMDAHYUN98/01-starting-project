@@ -1,9 +1,10 @@
-// This function expects a JS object as an argument
-// The object should contain the following properties
-// - initialInvestment: The initial investment amount
-// - annualInvestment: The amount invested every year
-// - expectedReturn: The expected (annual) rate of return
-// - duration: The investment duration (time frame)
+// 이 함수는 자바스크립트 객체를 인자로 받는다
+// 이 객체는 다음과 같은 속성들을 포함해야 한다
+// - initialInvestment: 초기 투자 금액
+// - annualInvestment: 매년 투자하는 금액
+// - expectedReturn: 기대되는 (연간) 수익률
+// - duration: 투자 기간(연 단위)
+
 export function calculateInvestmentResults({
   initialInvestment,
   annualInvestment,
@@ -17,19 +18,19 @@ export function calculateInvestmentResults({
     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
     investmentValue += interestEarnedInYear + annualInvestment;
     annualData.push({
-      year: i + 1, // year identifier
-      interest: interestEarnedInYear, // the amount of interest earned in this year
-      valueEndOfYear: investmentValue, // investment value at end of year
-      annualInvestment: annualInvestment, // investment added in this year
+      year: i + 1, // 연도 식별자
+      interest: interestEarnedInYear, // 해당 연도 이자 금액
+      valueEndOfYear: investmentValue, // 초기투자액 + 연간투자액
+      annualInvestment: annualInvestment, // 해당 연도에 추가로 투자한 금액
     });
   }
 
   return annualData;
 }
 
-// The browser-provided Intl API is used to prepare a formatter object
-// This object offers a "format()" method that can be used to format numbers as currency
-// Example Usage: formatter.format(1000) => yields "$1,000"
+// 브라우저에서 제공하는 Intl API를 사용해 포맷터 객체를 생성한다
+// 이 객체는 숫자를 통화 형식으로 변환해 주는 "format()" 메서드를 제공한다
+// 사용 예: formatter.format(1000) → "$1,000" 형태로 출력됨
 export const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
